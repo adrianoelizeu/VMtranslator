@@ -225,24 +225,7 @@ public class CodeWriter {
         labelCount++;
     }
 
-    void  writeLabel(String label ) {
-        write("(" + label + ")");
-    }
 
-    void  writeGoto(String label) {
-        write("@" + label);
-        write("0;JMP");
-    }
-
-    void  writeIf(String label ) {
-        write("@SP");
-        write("AM=M-1");
-        write("D=M");
-        write("M=0");
-        write("@" + label);
-        write("D;JNE");
-
-    }
 
     void  writeFunction(String funcName , int nLocals ) {
 

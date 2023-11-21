@@ -15,12 +15,7 @@ public class Command {
         NOT,
         PUSH,
         POP,
-        LABEL,
-        GOTO,
         IF,
-        RETURN,
-        CALL,
-        FUNCTION;
     }
 
     
