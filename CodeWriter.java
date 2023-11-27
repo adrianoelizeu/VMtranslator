@@ -3,15 +3,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
- 
-
 public class CodeWriter {
     private StringBuilder output = new StringBuilder();
     private String moduleName = "Main";
     private int labelCount = 0;
     private String outputFileName;
-	private int callCount = 0;
-
+    private int callCount = 0;
 
     public CodeWriter(String fname) {
         outputFileName = fname;
@@ -41,8 +38,7 @@ public class CodeWriter {
         return moduleName + "." + index;
     }
 
-
-     void writePush(String seg, int index) {
+    void writePush(String seg, int index) {
         if (seg.equals("constant")) {
             write("@" + index + " // push " + seg + " " + index);
             write("D=A");
@@ -226,13 +222,15 @@ public class CodeWriter {
         labelCount++;
     }
 
+    void writeGoto(String label) {
+        write("@" + label);
+        write("0;JMP");
+    }
 
-
-    void  writeFunction(String funcName , int nLocals ) {
+    void writeFunction(String funcName, int nLocals) {
 
         var loopLabel = funcName + "_INIT_LOCALS_LOOP";
         var loopEndLabel = funcName + "_INIT_LOCALS_END";
-
 
         write("(" + funcName + ")" + "// initializa local variables");
         write(String.format("@%d", nLocals));
@@ -257,8 +255,7 @@ public class CodeWriter {
 
     }
 
-
-    void  writeFramePush(String value) {
+    void writeFramePush(String value) {
         write("@" + value);
         write("D=M");
         write("@SP");

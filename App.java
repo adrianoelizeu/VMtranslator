@@ -1,5 +1,4 @@
 
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +8,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class App {
-    private static String fromFile(File file) {        
+    private static String fromFile(File file) {
 
         byte[] bytes;
         try {
@@ -20,9 +19,9 @@ public class App {
             e.printStackTrace();
         }
         return "";
-    } 
+    }
 
-    private static void translateFile (File file, CodeWriter code) {
+    private static void translateFile(File file, CodeWriter code) {
 
         String input = fromFile(file);
         Parser p = new Parser(input);
@@ -62,11 +61,9 @@ public class App {
                     code.writeArithmeticAnd();
                     break;
 
-
                 case Command.Type.OR:
                     code.writeArithmeticOr();
                     break;
-
 
                 case Command.Type.PUSH:
                     code.writePush(command.args.get(0), Integer.parseInt(command.args.get(1)));
@@ -76,9 +73,17 @@ public class App {
                     code.writePop(command.args.get(0), Integer.parseInt(command.args.get(1)));
                     break;
 
+                case Command.Type.GOTO:
+                    code.writeGoto(command.args.get(0));
+                    break;
+
+                case Command.Type.IF:
+                    code.writeIf(command.args.get(0));
+                    break;
+
                 default:
-                    System.out.println(command.type.toString()+" not implemented");
+                    System.out.println(command.type.toString() + " not implemented");
             }
-        } 
+        }
     }
 }
