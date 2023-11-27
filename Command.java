@@ -15,6 +15,7 @@ public class Command {
         NOT,
         PUSH,
         GOTO,
+        LABEL,
         POP,
         IF,
     }
