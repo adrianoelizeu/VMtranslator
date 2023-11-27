@@ -85,13 +85,15 @@ public class App {
                     code.writeLabel(command.args.get(0));
                     break;
 
+                case Command.Type.RETURN:
+                    code.writeReturn();
+                    break;
+
                 default:
                     System.out.println(command.type.toString() + " not implemented");
             }
         }
     }
-
-}
 
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -145,5 +147,4 @@ public class App {
             }
         }
     }
-
 }

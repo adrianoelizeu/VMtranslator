@@ -16,6 +16,7 @@ public class Command {
         PUSH,
         GOTO,
         LABEL,
+        RETURN,
         POP,
         IF,
     }
