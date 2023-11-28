@@ -277,6 +277,58 @@ public class CodeWriter {
 
     }
 
+    void writeCall(String funcName, int numArgs) { // SubRoutine
+
+        /*
+         * push return-address // (using the label declared below)
+         * push LCL // save LCL of the calling function
+         * push ARG // save ARG of the calling function
+         * push THIS // save T HIS of the calling function
+         * push THAT // save THAT of the calling function
+         * ARG = SP-n-5 // reposition ARG (n = number of args)
+         * LCL = SP // reposiiton LCL
+         * goto f // transfer control
+         * (return-address) // declare a label for the return-address
+         */
+
+        var comment = String.format("// call %s %d", funcName, numArgs);
+
+        var returnAddr = String.format("%s_RETURN_%d", funcName, callCount);
+        callCount++;
+
+        write(String.format("@%s %s", returnAddr, comment)); // push return-addr
+        write("D=A");
+        write("@SP");
+        write("A=M");
+        write("M=D");
+        write("@SP");
+        write("M=M+1");
+
+        writeFramePush("LCL");
+        writeFramePush("ARG");
+        writeFramePush("THIS");
+        writeFramePush("THAT");
+
+        write(String.format("@%d", numArgs)); // ARG = SP-n-5
+        write("D=A");
+        write("@5");
+        write("D=D+A");
+        write("@SP");
+        write("D=M-D");
+        write("@ARG");
+        write("M=D");
+
+        write("@SP");// LCL = SP
+        write("D=M");
+        write("@LCL");
+        write("M=D");
+
+        writeGoto(funcName);
+
+        write("(" + returnAddr + ")"); // (return-address)
+
+    }
+
     void writeReturn() {
 
         /*

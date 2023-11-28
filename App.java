@@ -89,6 +89,10 @@ public class App {
                     code.writeReturn();
                     break;
 
+                case CALL:
+                    code.writeCall(command.args.get(0), Integer.parseInt(command.args.get(1)));
+                    break;
+
                 default:
                     System.out.println(command.type.toString() + " not implemented");
             }

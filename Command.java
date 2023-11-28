@@ -17,6 +17,7 @@ public class Command {
         GOTO,
         LABEL,
         RETURN,
+        CALL,
         POP,
         IF,
     }
