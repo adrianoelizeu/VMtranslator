@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class CodeWriter {
+
     private StringBuilder output = new StringBuilder();
     private String moduleName = "Main";
     private int labelCount = 0;
@@ -277,6 +278,16 @@ public class CodeWriter {
 
     }
 
+    void writeFramePush(String value) {
+        write("@" + value);
+        write("D=M");
+        write("@SP");
+        write("A=M");
+        write("M=D");
+        write("@SP");
+        write("M=M+1");
+    }
+
     void writeCall(String funcName, int numArgs) { // SubRoutine
 
         /*
@@ -396,16 +407,6 @@ public class CodeWriter {
 
     }
 
-    void writeFramePush(String value) {
-        write("@" + value);
-        write("D=M");
-        write("@SP");
-        write("A=M");
-        write("M=D");
-        write("@SP");
-        write("M=M+1");
-    }
-
     private void write(String s) {
         output.append(String.format("%s\n", s));
     }
@@ -430,6 +431,5 @@ public class CodeWriter {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 }

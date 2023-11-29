@@ -1,7 +1,5 @@
 import java.util.Arrays;
 import java.util.List;
-import java.io.IOException;
-import java.io.FileReader;
 import java.util.stream.Collectors;
 
 public class Parser {

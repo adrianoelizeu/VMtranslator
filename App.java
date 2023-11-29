@@ -27,70 +27,74 @@ public class App {
         Parser p = new Parser(input);
         while (p.hasMoreCommands()) {
             var command = p.nextCommand();
-            switch (command.Type) {
+            switch (command.type) {
                 // arithmetics
-                case Command.Type.ADD:
+                case ADD:
                     code.writeArithmeticAdd();
                     break;
 
-                case Command.Type.SUB:
+                case SUB:
                     code.writeArithmeticSub();
                     break;
 
-                case Command.Type.NEG:
+                case NEG:
                     code.writeArithmeticNeg();
                     break;
 
-                case Command.Type.NOT:
+                case NOT:
                     code.writeArithmeticNot();
                     break;
 
-                case Command.Type.EQ:
+                case EQ:
                     code.writeArithmeticEq();
                     break;
 
-                case Command.Type.LT:
+                case LT:
                     code.writeArithmeticLt();
                     break;
 
-                case Command.Type.GT:
+                case GT:
                     code.writeArithmeticGt();
                     break;
 
-                case Command.Type.AND:
+                case AND:
                     code.writeArithmeticAnd();
                     break;
 
-                case Command.Type.OR:
+                case OR:
                     code.writeArithmeticOr();
                     break;
 
-                case Command.Type.PUSH:
+                case PUSH:
                     code.writePush(command.args.get(0), Integer.parseInt(command.args.get(1)));
                     break;
 
-                case Command.Type.POP:
+                case POP:
                     code.writePop(command.args.get(0), Integer.parseInt(command.args.get(1)));
                     break;
 
-                case Command.Type.GOTO:
+                case GOTO:
                     code.writeGoto(command.args.get(0));
                     break;
 
-                case Command.Type.IF:
+                case IF:
                     code.writeIf(command.args.get(0));
                     break;
 
-                case Command.Type.LABEL:
+                case LABEL:
                     code.writeLabel(command.args.get(0));
                     break;
 
-                case Command.Type.RETURN:
+                case RETURN:
                     code.writeReturn();
                     break;
 
                 case CALL:
                     code.writeCall(command.args.get(0), Integer.parseInt(command.args.get(1)));
+                    break;
+
+                case FUNCTION:
+                    code.writeFunction(command.args.get(0), Integer.parseInt(command.args.get(1)));
                     break;
 
                 default:

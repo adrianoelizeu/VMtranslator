@@ -7,11 +7,19 @@
 
         {
             "type": "java",
-            "name": "App",
+            "name": "Launch Current File",
             "request": "launch",
-            "mainClass": "App",
+            "mainClass": "${file}"
+        },
+
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
             "projectName": "VMTranslator",
-            "args": "C:\\Users\\Adria\\Desktop\\COMPILADORES\\VMtranslator\\projects\\08\\FunctionCalls\\FibonacciElement"
+            "args": "C:\\Users\\Adria\\Desktop\\COMPILADORES\\VMtranslator\\projects\\08\\FunctionCalls\\FibonacciElement",
+            "mainClass": "App"
         }
     ]
 }
+

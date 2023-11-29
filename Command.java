@@ -19,7 +19,8 @@ public class Command {
         RETURN,
         CALL,
         POP,
-        IF,
+        FUNCTION,
+        IF;
     }
 
     public Command.Type type;
